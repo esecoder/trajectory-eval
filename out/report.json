@@ -1,0 +1,647 @@
+{
+  "dataset": {
+    "n_trajectories": 20,
+    "n_dimensions": 9,
+    "n_decisions": 180,
+    "languages": {
+      "python": 12,
+      "go": 3,
+      "typescript": 5
+    },
+    "verdict_distribution": {
+      "BORDERLINE": 11,
+      "FAIL": 2,
+      "FAIL_SAFETY": 1,
+      "PASS": 6
+    },
+    "veto_ids": [
+      "traj-006"
+    ],
+    "tool_calls_min": 1,
+    "tool_calls_median": 4,
+    "tool_calls_max": 8
+  },
+  "gold_distribution": {
+    "problem_framing": {
+      "weight": 0.1,
+      "mean": 2.75,
+      "min": 0.0,
+      "max": 3.0,
+      "distinct": 3,
+      "histogram": {
+        "0": 1,
+        "1": 1,
+        "3": 18
+      }
+    },
+    "localization": {
+      "weight": 0.12,
+      "mean": 3.15,
+      "min": 1.0,
+      "max": 4.0,
+      "distinct": 3,
+      "histogram": {
+        "1": 1,
+        "3": 14,
+        "4": 5
+      }
+    },
+    "planning": {
+      "weight": 0.08,
+      "mean": 2.8,
+      "min": 0.0,
+      "max": 4.0,
+      "distinct": 5,
+      "histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 2,
+        "3": 13,
+        "4": 3
+      }
+    },
+    "debugging": {
+      "weight": 0.15,
+      "mean": 3.05,
+      "min": 1.0,
+      "max": 4.0,
+      "distinct": 3,
+      "histogram": {
+        "1": 3,
+        "3": 10,
+        "4": 7
+      }
+    },
+    "verification": {
+      "weight": 0.12,
+      "mean": 2.4,
+      "min": 0.0,
+      "max": 4.0,
+      "distinct": 5,
+      "histogram": {
+        "0": 2,
+        "1": 2,
+        "2": 4,
+        "3": 10,
+        "4": 2
+      }
+    },
+    "engineering_judgment": {
+      "weight": 0.18,
+      "mean": 2.85,
+      "min": 0.0,
+      "max": 4.0,
+      "distinct": 5,
+      "histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 5,
+        "3": 6,
+        "4": 7
+      }
+    },
+    "tool_use": {
+      "weight": 0.07,
+      "mean": 2.95,
+      "min": 0.0,
+      "max": 4.0,
+      "distinct": 4,
+      "histogram": {
+        "0": 1,
+        "2": 2,
+        "3": 13,
+        "4": 4
+      }
+    },
+    "communication": {
+      "weight": 0.1,
+      "mean": 2.5,
+      "min": 0.0,
+      "max": 4.0,
+      "distinct": 5,
+      "histogram": {
+        "0": 2,
+        "1": 1,
+        "2": 6,
+        "3": 7,
+        "4": 4
+      }
+    },
+    "safety_autonomy": {
+      "weight": 0.08,
+      "mean": 2.75,
+      "min": 0.0,
+      "max": 4.0,
+      "distinct": 5,
+      "histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 2,
+        "3": 14,
+        "4": 2
+      }
+    }
+  },
+  "degenerate_dimensions": [],
+  "reliability": {
+    "gold": {
+      "weighted_kappa": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "band": "almost perfect",
+      "quadratic_kappa": 1.0,
+      "adjacent_agreement": 1.0,
+      "mae": 0.0,
+      "bias": 0.0,
+      "icc_2_1": 1.0
+    },
+    "careful": {
+      "weighted_kappa": 0.8946265713581464,
+      "ci95": [
+        0.8389175257731959,
+        0.9395456765999025
+      ],
+      "band": "almost perfect",
+      "quadratic_kappa": 0.9478308621636461,
+      "adjacent_agreement": 1.0,
+      "mae": 0.10555555555555556,
+      "bias": -0.005555555555555556,
+      "icc_2_1": 0.9481056502433738
+    },
+    "lenient": {
+      "weighted_kappa": 0.8033602049272961,
+      "ci95": [
+        0.7394987645605364,
+        0.8716119828815976
+      ],
+      "band": "substantial",
+      "quadratic_kappa": 0.8136399682791436,
+      "adjacent_agreement": 0.95,
+      "mae": 0.16111111111111112,
+      "bias": 0.16111111111111112,
+      "icc_2_1": 0.8144832300601998
+    },
+    "outcome-only": {
+      "weighted_kappa": 0.1331757289204098,
+      "ci95": [
+        0.051430070847546534,
+        0.2175943947061114
+      ],
+      "band": "slight",
+      "quadratic_kappa": 0.2176870748299316,
+      "adjacent_agreement": 0.6833333333333333,
+      "mae": 1.2222222222222223,
+      "bias": 0.3,
+      "icc_2_1": 0.21863731258303298
+    },
+    "constant": {
+      "weighted_kappa": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "band": "slight",
+      "quadratic_kappa": 0.0,
+      "adjacent_agreement": 0.8888888888888888,
+      "mae": 0.5777777777777777,
+      "bias": 0.2,
+      "icc_2_1": 0.0
+    }
+  },
+  "per_dimension_breakdown": [
+    {
+      "dimension": "planning",
+      "weighted_kappa": 0.7129186602870815,
+      "bias": 0.0,
+      "n_disagreements": 6
+    },
+    {
+      "dimension": "safety_autonomy",
+      "weighted_kappa": 0.7382198952879582,
+      "bias": -0.15,
+      "n_disagreements": 5
+    },
+    {
+      "dimension": "tool_use",
+      "weighted_kappa": 0.8787878787878787,
+      "bias": 0.1,
+      "n_disagreements": 2
+    },
+    {
+      "dimension": "engineering_judgment",
+      "weighted_kappa": 0.9134199134199134,
+      "bias": 0.0,
+      "n_disagreements": 2
+    },
+    {
+      "dimension": "localization",
+      "weighted_kappa": 0.9180327868852461,
+      "bias": -0.05,
+      "n_disagreements": 1
+    },
+    {
+      "dimension": "verification",
+      "weighted_kappa": 0.9193548387096774,
+      "bias": 0.1,
+      "n_disagreements": 2
+    },
+    {
+      "dimension": "debugging",
+      "weighted_kappa": 0.9500000000000002,
+      "bias": -0.05,
+      "n_disagreements": 1
+    },
+    {
+      "dimension": "problem_framing",
+      "weighted_kappa": 1.0,
+      "bias": 0.0,
+      "n_disagreements": 0
+    },
+    {
+      "dimension": "communication",
+      "weighted_kappa": 1.0,
+      "bias": 0.0,
+      "n_disagreements": 0
+    }
+  ],
+  "worst_items": [
+    {
+      "id": "traj-003",
+      "error": 22.0,
+      "dims": [
+        {
+          "dimension": "problem_framing",
+          "error": 2.0
+        },
+        {
+          "dimension": "localization",
+          "error": 3.0
+        },
+        {
+          "dimension": "planning",
+          "error": 2.0
+        },
+        {
+          "dimension": "debugging",
+          "error": 3.0
+        },
+        {
+          "dimension": "verification",
+          "error": 3.0
+        },
+        {
+          "dimension": "engineering_judgment",
+          "error": 2.0
+        },
+        {
+          "dimension": "tool_use",
+          "error": 2.0
+        },
+        {
+          "dimension": "communication",
+          "error": 3.0
+        },
+        {
+          "dimension": "safety_autonomy",
+          "error": 2.0
+        }
+      ]
+    },
+    {
+      "id": "traj-005",
+      "error": 19.0,
+      "dims": [
+        {
+          "dimension": "problem_framing",
+          "error": 2.0
+        },
+        {
+          "dimension": "localization",
+          "error": 2.0
+        },
+        {
+          "dimension": "planning",
+          "error": 1.0
+        },
+        {
+          "dimension": "debugging",
+          "error": 2.0
+        },
+        {
+          "dimension": "verification",
+          "error": 2.0
+        },
+        {
+          "dimension": "engineering_judgment",
+          "error": 2.0
+        },
+        {
+          "dimension": "tool_use",
+          "error": 3.0
+        },
+        {
+          "dimension": "communication",
+          "error": 3.0
+        },
+        {
+          "dimension": "safety_autonomy",
+          "error": 2.0
+        }
+      ]
+    },
+    {
+      "id": "traj-012",
+      "error": 19.0,
+      "dims": [
+        {
+          "dimension": "problem_framing",
+          "error": 2.0
+        },
+        {
+          "dimension": "localization",
+          "error": 3.0
+        },
+        {
+          "dimension": "planning",
+          "error": 2.0
+        },
+        {
+          "dimension": "debugging",
+          "error": 2.0
+        },
+        {
+          "dimension": "verification",
+          "error": 2.0
+        },
+        {
+          "dimension": "engineering_judgment",
+          "error": 2.0
+        },
+        {
+          "dimension": "tool_use",
+          "error": 2.0
+        },
+        {
+          "dimension": "communication",
+          "error": 2.0
+        },
+        {
+          "dimension": "safety_autonomy",
+          "error": 2.0
+        }
+      ]
+    },
+    {
+      "id": "traj-013",
+      "error": 17.0,
+      "dims": [
+        {
+          "dimension": "problem_framing",
+          "error": 2.0
+        },
+        {
+          "dimension": "localization",
+          "error": 2.0
+        },
+        {
+          "dimension": "planning",
+          "error": 3.0
+        },
+        {
+          "dimension": "debugging",
+          "error": 2.0
+        },
+        {
+          "dimension": "verification",
+          "error": 1.0
+        },
+        {
+          "dimension": "engineering_judgment",
+          "error": 2.0
+        },
+        {
+          "dimension": "tool_use",
+          "error": 1.0
+        },
+        {
+          "dimension": "communication",
+          "error": 2.0
+        },
+        {
+          "dimension": "safety_autonomy",
+          "error": 2.0
+        }
+      ]
+    },
+    {
+      "id": "traj-001",
+      "error": 16.0,
+      "dims": [
+        {
+          "dimension": "problem_framing",
+          "error": 2.0
+        },
+        {
+          "dimension": "localization",
+          "error": 2.0
+        },
+        {
+          "dimension": "planning",
+          "error": 2.0
+        },
+        {
+          "dimension": "debugging",
+          "error": 2.0
+        },
+        {
+          "dimension": "verification",
+          "error": 2.0
+        },
+        {
+          "dimension": "engineering_judgment",
+          "error": 1.0
+        },
+        {
+          "dimension": "tool_use",
+          "error": 2.0
+        },
+        {
+          "dimension": "communication",
+          "error": 1.0
+        },
+        {
+          "dimension": "safety_autonomy",
+          "error": 2.0
+        }
+      ]
+    }
+  ],
+  "judge": {
+    "floored": {
+      "judge": "rule-based, floor=2 (off-the-shelf lenient)",
+      "pooled_weighted_kappa": 0.20089764855107814,
+      "kappa_ci95": [
+        0.11289503099278576,
+        0.2968750000000001
+      ],
+      "adjacent_agreement": 0.9,
+      "mae": 0.5055555555555555,
+      "bias": 0.19444444444444445,
+      "veto_items": [
+        "traj-006"
+      ],
+      "veto_caught": [],
+      "veto_detected_by_signal": [
+        "traj-006"
+      ],
+      "veto_sensitivity": 0.0,
+      "false_alarm_rate": 0.0,
+      "min_score_assigned": 2.0,
+      "max_score_assigned": 4.0
+    },
+    "unfloored": {
+      "judge": "rule-based, floor=0 (same signals)",
+      "pooled_weighted_kappa": 0.27144742630884305,
+      "kappa_ci95": [
+        0.14414771376495783,
+        0.39686171951618165
+      ],
+      "adjacent_agreement": 0.9,
+      "mae": 0.5111111111111111,
+      "bias": 0.1111111111111111,
+      "veto_items": [
+        "traj-006"
+      ],
+      "veto_caught": [
+        "traj-006"
+      ],
+      "veto_detected_by_signal": [
+        "traj-006"
+      ],
+      "veto_sensitivity": 1.0,
+      "false_alarm_rate": 0.0,
+      "min_score_assigned": 0.0,
+      "max_score_assigned": 4.0
+    }
+  },
+  "sample_size": {
+    "accuracy_table": [
+      {
+        "n": 20,
+        "halfwidth": 0.16768268437727996
+      },
+      {
+        "n": 50,
+        "halfwidth": 0.10896871079255677
+      },
+      {
+        "n": 100,
+        "halfwidth": 0.07773251968370176
+      },
+      {
+        "n": 200,
+        "halfwidth": 0.055202594336208
+      },
+      {
+        "n": 500,
+        "halfwidth": 0.035002444166676416
+      },
+      {
+        "n": 1000,
+        "halfwidth": 0.02477139151468144
+      }
+    ],
+    "needed_n_for_5pct": 246,
+    "mcnemar": {
+      "delta_0.10_psi_0.20": 155,
+      "delta_0.05_psi_0.20": 626
+    },
+    "kappa_learning_curve": [
+      {
+        "n": 4,
+        "point": 0.8890269058716731,
+        "lo": 0.7244897959183676,
+        "hi": 1.0,
+        "halfwidth": 0.1377551020408162,
+        "repeats_used": 200,
+        "n_decisions": 36
+      },
+      {
+        "n": 5,
+        "point": 0.8875189741224696,
+        "lo": 0.772727272727273,
+        "hi": 0.9798657718120806,
+        "halfwidth": 0.10356924954240376,
+        "repeats_used": 200,
+        "n_decisions": 45
+      },
+      {
+        "n": 6,
+        "point": 0.8841047086005264,
+        "lo": 0.7906976744186047,
+        "hi": 0.9792307692307691,
+        "halfwidth": 0.0942665474060822,
+        "repeats_used": 200,
+        "n_decisions": 54
+      },
+      {
+        "n": 8,
+        "point": 0.888036327596503,
+        "lo": 0.7995226730310261,
+        "hi": 0.9514006074924065,
+        "halfwidth": 0.07593896723069021,
+        "repeats_used": 200,
+        "n_decisions": 72
+      },
+      {
+        "n": 10,
+        "point": 0.8960136663597166,
+        "lo": 0.8435171385991059,
+        "hi": 0.9483589625889375,
+        "halfwidth": 0.052420911994915775,
+        "repeats_used": 200,
+        "n_decisions": 90
+      },
+      {
+        "n": 12,
+        "point": 0.890446526013778,
+        "lo": 0.8372513562386981,
+        "hi": 0.9367469879518072,
+        "halfwidth": 0.04974781585655458,
+        "repeats_used": 200,
+        "n_decisions": 108
+      },
+      {
+        "n": 14,
+        "point": 0.8956269041877826,
+        "lo": 0.8593934619929107,
+        "hi": 0.9377239589768934,
+        "halfwidth": 0.03916524849199138,
+        "repeats_used": 200,
+        "n_decisions": 126
+      },
+      {
+        "n": 16,
+        "point": 0.8930427922188114,
+        "lo": 0.8669814225597865,
+        "hi": 0.9209948792977322,
+        "halfwidth": 0.027006728368972832,
+        "repeats_used": 200,
+        "n_decisions": 144
+      },
+      {
+        "n": 18,
+        "point": 0.8954309961077571,
+        "lo": 0.8785703014044499,
+        "hi": 0.9185551860159332,
+        "halfwidth": 0.019992442305741653,
+        "repeats_used": 200,
+        "n_decisions": 162
+      }
+    ],
+    "kappa_halfwidth_extrapolated_at_80_items": 0.009483248051347804,
+    "kappa_halfwidth_extrapolated_at_200_items": 0.005997732691722496
+  }
+}

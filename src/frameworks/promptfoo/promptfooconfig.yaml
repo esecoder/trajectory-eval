@@ -1,0 +1,75 @@
+# promptfooconfig.yaml — the trajectory rubric eval as a Promptfoo regression gate.
+#
+# ---------------------------------------------------------------------------
+# WHAT PROMPTFOO IS FOR HERE, AND WHAT IT IS NOT
+# ---------------------------------------------------------------------------
+# Promptfoo's natural unit is a SWEEP: several prompts × several providers × assertions.
+# There is no prompt to vary in this evaluation — the agent has already run, and the
+# transcript is fixed input. So the sweep dimension is absent and Promptfoo is used for
+# what it is genuinely best at:
+#
+#   1. a CONFIG-DRIVEN REGRESSION GATE — fail CI if the rubric's agreement with gold
+#      drops below a threshold, without writing any orchestration code;
+#   2. a PROVIDER COMPARISON — the same rubric scored by several judges in one matrix
+#      (that is the sweep here: judges, not prompts);
+#   3. RED-TEAMING THE JUDGE rather than the agent.
+#
+# ---------------------------------------------------------------------------
+# WHY THE ASSERTION SHELLS OUT TO PYTHON
+# ---------------------------------------------------------------------------
+# ⚠️ The scoring logic lives in `src/judge.py` and `src/rubric.py`. Re-implementing it in
+# JavaScript would create two definitions of "good" that drift apart — which is the exact
+# failure this project is about. So the assertion calls the real Python judge and the
+# JavaScript only compares numbers. One definition, two tools.
+#
+# ---------------------------------------------------------------------------
+# RUN
+# ---------------------------------------------------------------------------
+#   cd 13-g2i-ai-evals/src/frameworks/promptfoo
+#   npm install
+#   npx promptfoo eval
+#   npx promptfoo view          # the comparison matrix in a browser
+
+description: "Coding-agent trajectory rubric — regression gate on agreement with gold"
+
+# The provider is the JUDGE, not a prompt target. `exec` runs our Python judge once per
+# test case and returns its score vector, so no model endpoint is needed for the gate.
+providers:
+  - id: exec:python3 provider.py
+    label: "rule-based rubric (offline, deterministic)"
+
+# ⚠️ To sweep judges, uncomment and run with a key. This is the comparison that matters:
+# several judges, one rubric, one set of gold labels.
+#  - id: exec:python3 provider.py --llm
+#    label: "DeepSeek via OpenAI-compatible API"
+
+prompts:
+  # A single fixed prompt: the transcript arrives as a variable. There is nothing to
+  # optimise here, and pretending otherwise would be the wrong use of the tool.
+  - "{{transcript}}"
+
+defaultTest:
+  assert:
+    - type: python
+      value: file://assert_rubric.py
+
+    # A hard gate: the veto must fire. If a change to the rubric or the judge silently
+    # removes the ability to fail an unsafe action, this fails the run.
+    - type: javascript
+      value: |
+        // ⚠️ The veto is asserted separately from the score, because a mean cannot
+        // express it — the whole reason veto sensitivity exists as its own metric.
+        if (context.vars.expect_veto === 'true') {
+          return output.includes('VETO') ? true : {
+            pass: false,
+            score: 0,
+            reason: 'expected a VETO on this trajectory and got none — a leniency floor may have been introduced',
+          };
+        }
+        return true;
+
+# ---------------------------------------------------------------------------
+# Test cases — generated from the trajectory set so they cannot drift from it.
+# `npm run gen` (or the python one-liner in the README) rewrites this file.
+# ---------------------------------------------------------------------------
+tests: file://tests.generated.yaml

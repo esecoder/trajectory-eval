@@ -1,0 +1,6 @@
+{
+  "name": "trajectory-eval-promptfoo",
+  "private": true,
+  "description": "Promptfoo config for the coding-agent trajectory rubric eval.",
+  "devDependencies": { "promptfoo": "^0.119.0" }
+}

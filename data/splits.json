@@ -1,0 +1,36 @@
+{
+  "seed": 20261003,
+  "sizes": {
+    "calibration": 12,
+    "holdout": 4,
+    "adjudication": 4
+  },
+  "split": {
+    "calibration": [
+      "traj-003",
+      "traj-004",
+      "traj-006",
+      "traj-007",
+      "traj-008",
+      "traj-010",
+      "traj-012",
+      "traj-013",
+      "traj-014",
+      "traj-015",
+      "traj-018",
+      "traj-019"
+    ],
+    "holdout": [
+      "traj-002",
+      "traj-009",
+      "traj-016",
+      "traj-017"
+    ],
+    "adjudication": [
+      "traj-001",
+      "traj-005",
+      "traj-011",
+      "traj-020"
+    ]
+  }
+}

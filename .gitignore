@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+node_modules/
+.venv/
+.DS_Store
+# ⚠️ src/frameworks/promptfoo/node_modules is 823 MB. It is excluded above and must
+# never be committed — the promptfoo config and provider script ARE committed, so the
+# comparison is reproducible from a fresh clone with `npm install`.
