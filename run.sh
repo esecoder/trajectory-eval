@@ -11,7 +11,18 @@
 # anything is installed. pytest is optional and used only by `test`.
 set -euo pipefail
 cd "$(dirname "$0")"
-PY="${PY:-python3}"
+# ⚠️ PICK THE INTERPRETER THAT CAN RUN THIS, AND ECHO WHICH ONE.
+# The first version hardcoded python3. It appeared to work here only because the core
+# needs nothing beyond the standard library -- so the failure was INVISIBLE. It would
+# not work for pytest: a reviewer without it silently got 34 invariants instead of the
+# 155 the README advertises, and could reasonably conclude the claim was inflated.
+# Prefer a venv, then PATH, and always say which was chosen.
+PY=""
+for cand in "./.venv/bin/python" "$(command -v python3 || true)"; do
+  [ -n "$cand" ] && [ -x "$cand" ] && { PY="$cand"; break; }
+done
+[ -n "$PY" ] || { echo "  no python3 found on PATH" >&2; exit 1; }
+echo "  python: $PY"
 
 case "${1:-report}" in
   report|"")
@@ -24,7 +35,8 @@ case "${1:-report}" in
     else
       echo
       echo "  ⚠️  pytest not installed — the 34 invariants above are the full check."
-      echo "      pip install pytest   to also run the 155 case-level tests."
+      echo "      One line to get all 155 case-level tests:"
+      echo "        python3 -m venv .venv && .venv/bin/pip install pytest"
     fi
     ;;
   rubric)
