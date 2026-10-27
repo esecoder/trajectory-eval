@@ -4,13 +4,13 @@
 staff engineer — not merely whether its tests passed — and for proving that the
 scoring itself is reliable.**
 
-⚠️ The hard part of evaluating an agent is not having an opinion about a transcript.
+ The hard part of evaluating an agent is not having an opinion about a transcript.
 It is showing that your opinion is **consistent**, that a second competent reviewer
 would **agree** with it, and that the measurement is **sensitive to the failures that
 must not pass**. This repository is that, built end to end, with the numbers
 produced by scripts you can run.
 
-> ### ⚠️ New to evaluation? Read [`FOUNDATIONS.md`](FOUNDATIONS.md) first.
+> ###  New to evaluation? Read [`FOUNDATIONS.md`](FOUNDATIONS.md) first.
 >
 > It teaches the whole discipline in plain English using only software-engineering
 > concepts you already know — code review, mutation testing, postmortems, lint
@@ -25,7 +25,7 @@ any code.**
 ./run.sh rubric      # the 9 dimensions and their behavioural anchors
 ```
 
-⚠️ **No dependencies for the measurement.** The reliability statistics, the gold
+ **No dependencies for the measurement.** The reliability statistics, the gold
 labels and the report need nothing beyond the Python standard library, so every
 number is verifiable on a fresh clone before anything is installed.
 
@@ -80,7 +80,7 @@ score[dimension] = clamp( 3.0  +  Σ strength deltas  −  Σ defect deltas ,  0
 Every delta sits next to the rubric anchor that justifies it, so a disagreement
 about ground truth is a one-line diff, not a discussion.
 
-⚠️ **This is the honest weakness of the dataset:** real trajectories fail in two
+ **This is the honest weakness of the dataset:** real trajectories fail in two
 overlapping ways where the correct score is genuinely arguable, and that
 arguability is exactly where human disagreement lives. Planted defects are
 cleaner, so the kappas here are a **lower bound** on real disagreement. They say
@@ -94,7 +94,7 @@ description says the focus is whether the model behaves like a strong engineer.
 
 | Dimension | w | What it asks |
 |---|---|---|
-| **`CV-FINAL.md`** | **a reviewer** | **The CV that actually goes out.** Two pages, no warnings, no commentary — ⚠️ not the dossier, and not this file |
+| **`CV-FINAL.md`** | **a reviewer** | **The CV that actually goes out.** Two pages, no warnings, no commentary —  not the dossier, and not this file |
 | `engineering_judgment` | 0.18 | Blast radius, reversibility, alternatives rejected |
 | `debugging` | 0.15 | Root cause vs symptom; recovery from own failed attempts |
 | `localization` | 0.12 | Right file, right tests, right call path |
@@ -197,10 +197,10 @@ ordinal metric is defined.
 
 | Estimator | Why it exists | When it is the WRONG one |
 |---|---|---|
-| `cohen_kappa` | Nominal, 2 raters, chance-corrected | ⚠️ Treats 3-vs-4 as identical to 1-vs-4. Wrong on an ordinal scale. |
+| `cohen_kappa` | Nominal, 2 raters, chance-corrected |  Treats 3-vs-4 as identical to 1-vs-4. Wrong on an ordinal scale. |
 | `weighted_kappa` (linear/quadratic) | **The estimator to lead with on a 0–4 rubric** | — |
 | `krippendorff_alpha_ordinal` | N raters, missing data allowed, ordinal metric | — |
-| `icc_2_1` | "Can one rater's score be trusted absolutely?" | ⚠️ Not the same question kappa answers |
+| `icc_2_1` | "Can one rater's score be trusted absolutely?" |  Not the same question kappa answers |
 | `adjacent_agreement` | The number to say to a stakeholder | Assumption-free, and therefore blind |
 | `mean_signed_error` | Judge **bias** — the thing a κ hide | — |
 
@@ -238,7 +238,7 @@ Estimators are checked against **analytic answers**, not against each other:
 κ = 0.4 exactly on the textbook 2×2 table, α = −0.5 exactly on the maximally
 disagreeing binary case, ICC = 1.0 for identical raters.
 
-⚠️ Every interval here is a bootstrap over **items**, not over scores — the nine
+ Every interval here is a bootstrap over **items**, not over scores — the nine
 scores in one trajectory come from one judgement and are not independent.
 Resampling scores understates the uncertainty. An earlier version of this project
 made exactly that mistake in the learning curve, and fixing it is recorded in the
